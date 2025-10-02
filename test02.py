@@ -6,6 +6,8 @@ import logging
 from openai import OpenAI
 from dotenv import load_dotenv
 #수정
+
+# 나는 빡빡이다
 # 로깅 설정
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
