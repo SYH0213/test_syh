@@ -1,0 +1,18 @@
+# PyTorch (CUDA 11.8, GTX 1660 SUPER 호환)
+torch==2.3.1
+torchaudio==2.3.1
+torchvision==0.18.1
+
+# pyannote (안정 버전)
+pyannote.audio==3.4.0
+pyannote.core==5.0.0
+pyannote.metrics==3.2.1
+
+# 호환 numpy
+numpy==1.26.4
+
+# 필수 유틸
+torchcodec==0.7.0
+huggingface_hub
+python-dotenv
+ffmpeg-python
