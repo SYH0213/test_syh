@@ -1,0 +1,2 @@
+pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cpu 로 CPU 설치
+pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cu118 로 GPU 설치(본인 컴퓨터의 GPU를 보고 변경해야함.)
