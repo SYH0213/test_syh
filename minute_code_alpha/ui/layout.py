@@ -26,8 +26,8 @@ from .handlers import (
     get_audio_files_for_dropdown
 )
 from ..settings import (
-    AUDIO_INPUT_DIR_NAME,
-    RESULTS_DIR_NAME,
+    DATA_DIR,
+    RESULTS_DIR,
     AVAILABLE_LLMS,
     DEFAULT_MEETING_TOPIC,
     DEFAULT_KEYWORDS
@@ -35,9 +35,7 @@ from ..settings import (
 
 # --- 기본 설정 ---
 # 프로젝트의 중요한 폴더 위치를 설정합니다.
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = os.path.join(ROOT_DIR, AUDIO_INPUT_DIR_NAME)
-RESULTS_DIR = os.path.join(ROOT_DIR, RESULTS_DIR_NAME)
+# 이제 모든 경로는 settings.py에서 관리합니다.
 
 def create_ui():
     """Gradio UI를 생성하고 반환합니다."""

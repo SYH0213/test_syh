@@ -13,9 +13,9 @@ import logging
 from .ui.layout import create_ui
 # '규칙집'에서 필요한 폴더 이름들을 가져옵니다.
 from .settings import (
-    AUDIO_INPUT_DIR_NAME,
-    RESULTS_DIR_NAME,
-    TEMP_DIR_NAME
+    DATA_DIR,
+    RESULTS_DIR,
+    TEMP_DIR
 )
 
 # --- 기본 설정 및 디렉터리 생성 ---
@@ -23,14 +23,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def setup_directories():
     """프로젝트에 필요한 모든 디렉터리를 생성합니다."""
-    # 현재 파일이 있는 곳을 기준으로 프로젝트의 가장 위쪽 폴더를 찾습니다.
-    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+    # '규칙집'에 정의된 폴더들을 만듭니다.
+    dir_paths = [DATA_DIR, RESULTS_DIR, TEMP_DIR]
     
-    # '규칙집'에 적힌 폴더 이름들을 가져와서 실제 폴더를 만듭니다.
-    dir_names = [AUDIO_INPUT_DIR_NAME, RESULTS_DIR_NAME, TEMP_DIR_NAME]
-    
-    for dir_name in dir_names:
-        path = os.path.join(ROOT_DIR, dir_name)
+    for path in dir_paths:
         os.makedirs(path, exist_ok=True) # 폴더가 없으면 만들고, 있으면 그냥 넘어갑니다.
         logging.info(f"Directory '{path}' is ready.")
 

@@ -6,12 +6,18 @@
 이렇게 규칙을 정해두면, 모든 담당자들이 헷갈리지 않고 정해진 대로 일을 처리할 수 있습니다.
 """
 # -*- coding: utf-8 -*-
+import os
 
-# --- 경로 이름 ---
-AUDIO_INPUT_DIR_NAME = "data"
-RESULTS_DIR_NAME = "results"
-TEMP_DIR_NAME = "temp"
-CHROMA_PERSIST_DIR = "chroma_db"
+# --- 경로 설정 ---
+# 프로젝트의 최상위 폴더 (Module)
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# 데이터 및 결과 폴더 (최상위 폴더 기준)
+DATA_DIR = os.path.join(ROOT_DIR, "data")
+RESULTS_DIR = os.path.join(ROOT_DIR, "results")
+TEMP_DIR = os.path.join(ROOT_DIR, "temp")
+CHROMA_PERSIST_DIR = os.path.join(ROOT_DIR, "chroma_db")
+
 
 # --- 모델 및 처리 설정 ---
 # STT 모델

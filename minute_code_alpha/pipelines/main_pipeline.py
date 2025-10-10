@@ -17,8 +17,9 @@ from slugify import slugify
 
 # 우리가 만든 모듈들을 가져옵니다.
 from ..settings import (
-    TEMP_DIR_NAME,
-    STT_MODEL
+    TEMP_DIR,
+    STT_MODEL,
+    RESULTS_DIR
 )
 from ..config import check_api_keys # API 키 확인 담당
 
@@ -29,10 +30,7 @@ from ..llm.keywords import extract_keywords # 키워드 추출 담당
 from ..audio.diarization import diarize_audio # 화자 분리 담당
 from ..audio.stt import transcribe_segment # STT 담당
 from ..core.file_io import save_results # 파일 저장 담당
-
-# 원본 프로젝트의 챗봇 모듈에서 벡터 저장소 업데이트 함수를 임시로 가져옵니다.
-# 이 부분은 챗봇 리팩토링 단계에서 다시 정리될 예정입니다.
-from Minute.minute_code.chatbot.crag_logic import update_vector_store 
+from ..chatbot.vector_store import update_vector_store 
 
 # STT 프롬프트는 LLM 프롬프트와는 별개로 STT 모델에 직접 전달되므로,
 # 기존 utils.prompts에서 가져오거나 여기에 정의합니다.
@@ -84,7 +82,7 @@ def run_pipeline(audio_path: str, llm_choice: str, topic: str, keywords: list):
 
     tasks = []
     segments_info = []
-    temp_dir = TEMP_DIR_NAME # settings.py에서 가져온 임시 폴더 이름
+    temp_dir = TEMP_DIR # settings.py에서 가져온 임시 폴더 이름
     os.makedirs(temp_dir, exist_ok=True) # 임시 폴더 생성
 
     for i, (turn, _, speaker) in enumerate(diarization.itertracks(yield_label=True)):
@@ -159,7 +157,7 @@ def run_pipeline(audio_path: str, llm_choice: str, topic: str, keywords: list):
 
     # --- 6. 결과 저장 --- #
     results_path = save_results(
-        base_results_dir="results", # settings.RESULTS_DIR_NAME 대신 직접 문자열 사용
+        base_results_dir=RESULTS_DIR, # settings.py에서 가져온 경로 사용
         original_filename=audio_path,
         meeting_topic=topic,
         keywords=final_keywords,

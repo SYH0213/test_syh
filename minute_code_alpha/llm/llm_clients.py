@@ -11,6 +11,7 @@ from openai import OpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 # 방금 만든 '비밀 금고'에서 API 키를 가져오는 함수를 불러옵니다.
 from ..config import get_api_key
@@ -31,7 +32,7 @@ def get_gemini_chain(template_string, input_vars):
         return None
     
     prompt = PromptTemplate(template=template_string, input_variables=input_vars)
-    llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.5, google_api_key=api_key)
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0.5, google_api_key=api_key)
     return LLMChain(llm=llm, prompt=prompt)
 
 def get_chat_openai_llm():
